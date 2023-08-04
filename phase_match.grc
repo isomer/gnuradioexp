@@ -1,0 +1,494 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[M7EPL]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Changes the phase of "in" to match "ref"
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: hb
+    hier_block_src_path: '.:'
+    id: phase_match
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Phase Matcher
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: add the phase to all the bins from the fft.
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3400, 232.0]
+    rotation: 0
+    state: true
+- name: blocks_argmax_xx_1
+  id: blocks_argmax_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: Select the "bin" with the largest magnitude (the strongest correlation)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '1'
+    type: float
+    vlen: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2056, 368.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_mag_0
+  id: blocks_complex_to_mag
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1808, 376.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_magphase_0
+  id: blocks_complex_to_magphase
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1176, 200.0]
+    rotation: 0
+    state: true
+- name: blocks_magphase_to_complex_0
+  id: blocks_magphase_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3664, 200.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_conjugate_cc_0
+  id: blocks_multiply_conjugate_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: "Multiplying an FFT by the complex conjugate \nof another FFT then inverting\
+      \ the FFT gives\n you a cross correlation."
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1176, 368.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: Convert from sample index to radians
+    const: 2*3.1415926/vec_len
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2664, 360.0]
+    rotation: 0
+    state: true
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: short
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2432.0, 480]
+    rotation: 270
+    state: true
+- name: blocks_repeat_0
+  id: blocks_repeat
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    interp: vec_len
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2976, 360.0]
+    rotation: 0
+    state: true
+- name: blocks_short_to_float_0
+  id: blocks_short_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '1'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2384, 360.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [344, 216.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 400.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3200, 368.0]
+    rotation: 0
+    state: true
+- name: blocks_vector_to_stream_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4320, 216.0]
+    rotation: 0
+    state: true
+- name: fft_vxx_0
+  id: fft_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: vec_len
+    forward: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    shift: 'False'
+    type: complex
+    window: '[1]*vec_len'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [648, 176.0]
+    rotation: 0
+    state: true
+- name: fft_vxx_0_0
+  id: fft_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: vec_len
+    forward: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    shift: 'False'
+    type: complex
+    window: '[1]*vec_len'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [648, 360.0]
+    rotation: 0
+    state: true
+- name: fft_vxx_1
+  id: fft_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: vec_len
+    forward: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    shift: 'False'
+    type: complex
+    window: '[1]*vec_len'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1424, 344.0]
+    rotation: 0
+    state: true
+- name: fft_vxx_2
+  id: fft_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: vec_len
+    forward: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    shift: 'False'
+    type: complex
+    window: '[1]*vec_len'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3952, 176.0]
+    rotation: 0
+    state: true
+- name: pad_sink_0
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: 'This is the offset in samples that the first signal is behind the second.
+
+      Note that this is modulo vec_len, so you often see very large numbers
+
+      here if the second signal lags the first.'
+    label: offset
+    num_streams: '1'
+    optional: 'False'
+    type: short
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2384, 256.0]
+    rotation: 0
+    state: true
+- name: pad_sink_1
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: out
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4496, 208.0]
+    rotation: 0
+    state: true
+- name: pad_source_0
+  id: pad_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: ref
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 208.0]
+    rotation: 0
+    state: true
+- name: pad_source_1
+  id: pad_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: in
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 392.0]
+    rotation: 0
+    state: true
+- name: vec_len
+  id: parameter
+  parameters:
+    alias: ''
+    comment: 'Must be a power of 2.
+
+      Larger numbers require substantially more CPU
+
+      Smaller numbers adapt faster
+
+      Must be at least large enough to cover the phase offset between the signals.'
+    hide: none
+    label: Vector Length
+    short_id: ''
+    type: intx
+    value: '512'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [208, 16.0]
+    rotation: 0
+    state: true
+
+connections:
+- [blocks_add_xx_0, '0', blocks_magphase_to_complex_0, '1']
+- [blocks_argmax_xx_1, '0', blocks_short_to_float_0, '0']
+- [blocks_argmax_xx_1, '0', pad_sink_0, '0']
+- [blocks_argmax_xx_1, '1', blocks_null_sink_0, '0']
+- [blocks_complex_to_mag_0, '0', blocks_argmax_xx_1, '0']
+- [blocks_complex_to_magphase_0, '0', blocks_magphase_to_complex_0, '0']
+- [blocks_complex_to_magphase_0, '1', blocks_add_xx_0, '0']
+- [blocks_magphase_to_complex_0, '0', fft_vxx_2, '0']
+- [blocks_multiply_conjugate_cc_0, '0', fft_vxx_1, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_repeat_0, '0']
+- [blocks_repeat_0, '0', blocks_stream_to_vector_1, '0']
+- [blocks_short_to_float_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
+- [blocks_stream_to_vector_0_0, '0', fft_vxx_0_0, '0']
+- [blocks_stream_to_vector_1, '0', blocks_add_xx_0, '1']
+- [blocks_vector_to_stream_0, '0', pad_sink_1, '0']
+- [fft_vxx_0, '0', blocks_multiply_conjugate_cc_0, '0']
+- [fft_vxx_0_0, '0', blocks_complex_to_magphase_0, '0']
+- [fft_vxx_0_0, '0', blocks_multiply_conjugate_cc_0, '1']
+- [fft_vxx_1, '0', blocks_complex_to_mag_0, '0']
+- [fft_vxx_2, '0', blocks_vector_to_stream_0, '0']
+- [pad_source_0, '0', blocks_stream_to_vector_0, '0']
+- [pad_source_1, '0', blocks_stream_to_vector_0_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.5.1

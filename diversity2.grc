@@ -1,0 +1,429 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: diversity2
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: freq
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    type: int
+    value: '100000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 32.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '500000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 224.0]
+    rotation: 0
+    state: enabled
+- name: source
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Input Source
+    label0: Noise Source
+    label1: Radio Source
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '0'
+    widget: radio_buttons
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 12.0]
+    rotation: 0
+    state: true
+- name: vec_len
+  id: variable
+  parameters:
+    comment: ''
+    value: '1024'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 136.0]
+    rotation: 0
+    state: true
+- name: volume
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Volume
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '100'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 40.0]
+    rotation: 0
+    state: true
+- name: MRC_0
+  id: MRC
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1400, 256.0]
+    rotation: 0
+    state: true
+- name: analog_fastnoise_source_x_0
+  id: analog_fastnoise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    samples: '8192'
+    seed: '0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [152, 160.0]
+    rotation: 0
+    state: true
+- name: blocks_delay_0
+  id: blocks_delay
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    delay: '20'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 200.0]
+    rotation: 0
+    state: true
+- name: blocks_selector_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: Source 1
+    comment: Source 1 Input
+    enabled: 'True'
+    input_index: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 192.0]
+    rotation: 0
+    state: true
+- name: blocks_selector_0_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: Source 2
+    comment: Source 2 Input
+    enabled: 'True'
+    input_index: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 456.0]
+    rotation: 0
+    state: true
+- name: blocks_var_to_msg_0
+  id: blocks_var_to_msg
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    msgname: input_source
+    target: source
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 64.0]
+    rotation: 0
+    state: true
+- name: fmsink_0
+  id: fmsink
+  parameters:
+    affinity: ''
+    alias: ''
+    audio_rate: '44100'
+    comment: ''
+    samp_rate: samp_rate
+    volume: volume
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1664, 560.0]
+    rotation: 0
+    state: true
+- name: phase_match_1
+  id: phase_match
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vec_len: vec_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1144, 392.0]
+    rotation: 0
+    state: true
+- name: qtgui_number_sink_0
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_VERT
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '512'
+    min: '-1'
+    name: '"Phase offset"'
+    nconnections: '1'
+    type: short
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1664, 352.0]
+    rotation: 0
+    state: true
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: '0'
+    fftsize: vec_len
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1664, 232.0]
+    rotation: 0
+    state: true
+- name: soapy_custom_source_0
+  id: soapy_custom_source
+  parameters:
+    affinity: ''
+    agc0: 'False'
+    agc1: 'False'
+    alias: ''
+    antenna0: Tuner 1 50 ohm
+    antenna1: Tuner 2 50 ohm
+    bandwidth0: '0'
+    bandwidth1: '0'
+    center_freq0: freq
+    center_freq1: freq
+    comment: ''
+    dc_offset0: '0'
+    dc_offset1: '0'
+    dc_removal0: 'True'
+    dc_removal1: 'True'
+    dev_args: remote:driver=sdrplay,mode=DT
+    driver: remote
+    freq_correction0: '0'
+    freq_correction1: '0'
+    gain0: '10'
+    gain1: '0'
+    iq_balance0: '0'
+    iq_balance1: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '1'
+    samp_rate: samp_rate
+    settings0: ''
+    settings1: ''
+    stream_args: ''
+    tune_args0: ''
+    tune_args1: ''
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [216, 440.0]
+    rotation: 0
+    state: true
+
+connections:
+- [MRC_0, '0', fmsink_0, '0']
+- [MRC_0, '0', qtgui_sink_x_0, '0']
+- [analog_fastnoise_source_x_0, '0', blocks_delay_0, '0']
+- [analog_fastnoise_source_x_0, '0', blocks_selector_0_0, '0']
+- [blocks_delay_0, '0', blocks_selector_0, '0']
+- [blocks_selector_0, '0', MRC_0, '0']
+- [blocks_selector_0, '0', phase_match_1, '0']
+- [blocks_selector_0_0, '0', phase_match_1, '1']
+- [blocks_var_to_msg_0, msgout, blocks_selector_0, iindex]
+- [blocks_var_to_msg_0, msgout, blocks_selector_0_0, iindex]
+- [phase_match_1, '0', qtgui_number_sink_0, '0']
+- [phase_match_1, '1', MRC_0, '1']
+- [soapy_custom_source_0, '0', blocks_selector_0, '1']
+- [soapy_custom_source_0, '0', blocks_selector_0_0, '1']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.5.1
